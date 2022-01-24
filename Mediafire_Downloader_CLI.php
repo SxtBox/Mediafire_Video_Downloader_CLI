@@ -90,7 +90,7 @@ $get_video_url = trim(fgets(STDIN, 1024)); // FSTR
 
     if (empty($get_video_url))
 	{
-		echo "URL is Empty";
+	    echo "URL is Empty";
 	}
 
     $get_data = @file_get_contents($get_video_url) or die("Could Not Get File From: $get_video_url");
@@ -99,20 +99,20 @@ $get_video_url = trim(fgets(STDIN, 1024)); // FSTR
     //$directory = "/var/www/html/Mediafire"; // Manual
     $directory = DOWNLOAD_DIRECTORY;
     if (!file_exists($directory)) {
-	    mkdir($directory);
+        mkdir($directory);
     }
 
     $check_file = $directory."/".$file_name;
     if (file_exists($check_file)) {
         //unlink($check_file); // Auto Delete if file exists
-		echo "\n";
-		exit("\e[0;31m [-] Video -> \e[30;48;5;82m$file_name\e[0m Exists in \e[5m$directory\e[0m\n\n");
+	echo "\n";
+	exit("\e[0;31m [-] Video -> \e[30;48;5;82m$file_name\e[0m Exists in \e[5m$directory\e[0m\n\n");
     }
 
     $file_save_dir = $directory."/".$file_name;
     $regex = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
     if(preg_match_all("/$regex/siU", $get_data, $matches)) {
-	$url = $matches[2][6];
+    $url = $matches[2][6];
 
     system("clear");
     echo "\n";
@@ -133,7 +133,7 @@ $get_video_url = trim(fgets(STDIN, 1024)); // FSTR
     echo " └────────────────────────────────┘ \n";
     echo "";
     // Simple curl
-	$ch = curl_init ($url);
+    $ch = curl_init ($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
